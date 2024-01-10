@@ -1,14 +1,32 @@
 # Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)
-
-
-
 
 ## Understanding the Spring Petclinic application with a few diagrams
 <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
 
+
+**We recommend running the petclinic app using docker to simplify setup time**.
+
+## Building a Container
+
+Use the [Dockerfile](Dockerfile) at the root of the project to build a container image for the application.
+This doesn't require a local JDK or Maven installation, but requires Docker instead.
+
+```shell
+docker build -t petclinic .
+docker run -p 8080:8080 petclinic
+```
+
+The open http://localhost:8080 in your browser to access the application.
+
+Alternatively, you can build a container image (if you have a docker daemon) using the Spring Boot build plugin:
+
+```
+./mvnw spring-boot:build-image
+```
+
 ## Running petclinic locally
+
 Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/). You can build a jar file and run it from the command line (it should work just as well with Java 17 or newer):
 
 
@@ -30,22 +48,6 @@ Or you can run it from Maven directly using the Spring Boot Maven plugin. If you
 ```
 
 > NOTE: If you prefer to use Gradle, you can build the app using `./gradlew build` and look for the jar file in `build/libs`.
-
-## Building a Container
-
-Use the [Dockerfile](Dockerfile) at the root of the project to build a container image for the application.
-This doesn't require a local JDK or Maven installation, but requires Docker instead.
-
-```shell
-docker build -t petclinic .
-docker run -p 8080:8080 petclinic
-```
-
-Alternatively, you can build a container image (if you have a docker daemon) using the Spring Boot build plugin:
-
-```
-./mvnw spring-boot:build-image
-```
 
 ## In case you find a bug/suggested improvement for Spring Petclinic
 Our issue tracker is available [here](https://github.com/spring-projects/spring-petclinic/issues)
